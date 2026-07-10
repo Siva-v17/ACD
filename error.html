@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>404 — Page Not Found | Stackly Motors</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<style>
+  :root{
+  --ink:        #0B0D10;   /* graphite black background */
+  --ink-2:      #14171C;   /* surface */
+  --ink-3:      #1C2027;   /* raised surface */
+  --line:       #262B33;   /* hairline borders */
+  --paper:      #ECE9E2;   /* warm off-white text */
+  --paper-dim:  #9BA0AA;   /* muted text */
+  --ignition:   #FF5A1F;   /* ignition orange — primary accent */
+  --ignition-2: #FF8A50;
+  --volt:       #00E0C6;   /* voltage teal — secondary accent */
+  --volt-dim:   #0A3A36;
+  --danger:     #FF4D5E;
+  --ok:         #3DDC84;
+
+  --f-display: 'Rajdhani', 'Arial Narrow', sans-serif;
+  --f-body:    'Inter', -apple-system, sans-serif;
+  --f-mono:    'JetBrains Mono', monospace;
+
+  --container: 1280px;
+  --radius: 10px;
+  --ease: cubic-bezier(.22,1,.36,1);
+}
+
+*,*::before,*::after{ box-sizing:border-box; }
+html{ scroll-behavior:smooth; }
+body{
+  margin:0;
+  background:var(--ink);
+  color:var(--paper);
+  font-family:var(--f-body);
+  font-size:16px;
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+img{ max-width:100%; display:block; }
+a{ color:inherit; text-decoration:none; }
+ul{ list-style:none; margin:0; padding:0; }
+button{ font-family:inherit; cursor:pointer; }
+input,select,textarea{ font-family:inherit; }
+
+::selection{ background:var(--ignition); color:var(--ink); }
+
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important; }
+}
+
+/* ---------- Type scale ---------- */
+h1,h2,h3,h4{
+  font-family:var(--f-display);
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:0.01em;
+  line-height:1.02;
+  margin:0;
+}
+h1{ font-size:clamp(3rem,7vw,6.5rem); letter-spacing:-0.01em; }
+h2{ font-size:clamp(2.1rem,4.4vw,3.6rem); }
+h3{ font-size:clamp(1.3rem,2.2vw,1.8rem); }
+p{ margin:0; color:var(--paper-dim); }
+.mono{ font-family:var(--f-mono); text-transform:uppercase; letter-spacing:0.14em; font-size:0.72rem; }
+
+.eyebrow{
+  font-family:var(--f-mono); text-transform:uppercase; letter-spacing:0.22em;
+  font-size:0.72rem; color:var(--ignition); display:flex; align-items:center; gap:10px; margin-bottom:18px;
+}
+.eyebrow::before{ content:''; width:26px; height:1px; background:var(--ignition); display:inline-block; }
+
+.container{ max-width:var(--container); margin:0 auto; padding:0 32px; }
+
+/* ---------- Buttons ---------- */
+.btn{
+  display:inline-flex; align-items:center; gap:10px;
+  font-family:var(--f-display); font-weight:700; text-transform:uppercase; letter-spacing:0.06em;
+  font-size:0.92rem; padding:16px 30px; border-radius:4px; border:1px solid transparent;
+  transition:transform .35s var(--ease), background .35s var(--ease), border-color .35s var(--ease), color .35s var(--ease);
+  white-space:nowrap;
+}
+.btn-primary{ background:var(--ignition); color:var(--ink); }
+.btn-primary:hover{ background:var(--ignition-2); transform:translateY(-3px); }
+.btn-ghost{ border-color:var(--line); color:var(--paper); background:transparent; }
+.btn-ghost:hover{ border-color:var(--paper); transform:translateY(-3px); }
+.btn-volt{ background:var(--volt); color:var(--ink); }
+.btn-volt:hover{ transform:translateY(-3px); }
+.btn-sm{ padding:11px 20px; font-size:0.78rem; }
+.btn-block{ width:100%; justify-content:center; }
+
+/* ---------- Nav ---------- */
+.nav{
+  position:fixed; top:0; left:0; right:0; z-index:1000;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:22px 40px; transition:background .4s var(--ease), padding .4s var(--ease), border-color .4s var(--ease);
+  border-bottom:1px solid transparent;
+}
+.nav.is-scrolled{ background:rgba(11,13,16,0.86); backdrop-filter:blur(14px); padding:14px 40px; border-color:var(--line); }
+.nav-logo{ font-family:var(--f-display); font-weight:700; font-size:1.4rem; letter-spacing:0.03em; text-transform:uppercase; display:flex; align-items:center; gap:8px;}
+.nav-logo span{ color:var(--ignition); }
+.nav-links{ display:flex; gap:34px; }
+.nav-links a{
+  font-family:var(--f-mono); font-size:0.76rem; text-transform:uppercase; letter-spacing:0.1em; color:var(--paper-dim);
+  position:relative; padding-bottom:4px; transition:color .3s;
+}
+.nav-links a::after{ content:''; position:absolute; left:0; bottom:0; width:0; height:1px; background:var(--ignition); transition:width .3s var(--ease); }
+.nav-links a:hover, .nav-links a.active{ color:var(--paper); }
+.nav-links a:hover::after, .nav-links a.active::after{ width:100%; }
+.nav-cta{ display:flex; align-items:center; gap:18px; }
+.nav-toggle{ display:none; width:26px; height:20px; position:relative; background:none; border:none; }
+.nav-toggle span{ position:absolute; left:0; width:100%; height:2px; background:var(--paper); transition:all .3s var(--ease); }
+.nav-toggle span:nth-child(1){ top:0; } .nav-toggle span:nth-child(2){ top:9px; } .nav-toggle span:nth-child(3){ top:18px; }
+
+.nav-close{ display:none; position:absolute; top:22px; right:32px; width:24px; height:24px; background:none; border:none; color:var(--ignition); font-size:1.6rem; cursor:pointer; z-index:1101; align-items:center; justify-content:center; transition:transform .3s var(--ease); }
+.nav-close:hover{ transform:scale(1.15); }
+
+/* ---------- 404 Error Page ---------- */
+.error-container{
+  min-height:100vh; display:flex; align-items:center; justify-content:center;
+  padding:120px 32px 60px; position:relative; overflow:hidden;
+}
+
+.error-bg{
+  position:absolute; inset:0; z-index:0; opacity:0.08;
+  background-image:linear-gradient(135deg, var(--ignition) 1px, transparent 1px), linear-gradient(45deg, var(--ignition) 1px, transparent 1px);
+  background-size:80px 80px;
+}
+
+.error-content{
+  position:relative; z-index:2; width:100%; max-width:720px; text-align:center;
+}
+
+.error-code{
+  font-family:var(--f-display); font-size:clamp(6rem, 15vw, 12rem);
+  font-weight:700; letter-spacing:-0.02em; line-height:0.9;
+  background:linear-gradient(135deg, var(--ignition) 0%, var(--ignition-2) 50%, var(--volt) 100%);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  margin:0 0 20px; opacity:0; transform:translateY(40px);
+  animation:slideIn 0.9s var(--ease) 0.1s forwards;
+}
+
+.error-title{
+  font-size:clamp(1.8rem, 4vw, 2.8rem); margin-bottom:16px;
+  opacity:0; transform:translateY(40px);
+  animation:slideIn 0.9s var(--ease) 0.25s forwards;
+}
+
+.error-message{
+  font-size:1.05rem; color:var(--paper-dim); max-width:560px; margin:0 auto 28px;
+  opacity:0; transform:translateY(40px);
+  animation:slideIn 0.9s var(--ease) 0.4s forwards;
+}
+
+.error-detail{
+  display:flex; gap:32px; justify-content:center; margin-bottom:48px; flex-wrap:wrap;
+  opacity:0; transform:translateY(40px);
+  animation:slideIn 0.9s var(--ease) 0.5s forwards;
+}
+
+.error-detail-item{
+  display:flex; flex-direction:column; align-items:center; gap:8px;
+}
+
+.error-detail-item .ic{
+  width:52px; height:52px; border-radius:50%; background:var(--volt-dim);
+  color:var(--volt); display:flex; align-items:center; justify-content:center;
+  font-size:1.4rem;
+}
+
+.error-detail-item b{
+  font-family:var(--f-display); font-size:0.95rem; text-transform:uppercase;
+  letter-spacing:0.06em; color:var(--paper);
+}
+
+.error-detail-item span{
+  font-family:var(--f-mono); font-size:0.75rem; color:var(--paper-dim);
+  text-transform:uppercase; letter-spacing:0.08em;
+}
+
+.error-actions{
+  display:flex; gap:16px; justify-content:center; flex-wrap:wrap;
+  opacity:0; transform:translateY(40px);
+  animation:slideIn 0.9s var(--ease) 0.65s forwards;
+}
+
+.error-actions .btn{ min-width:180px; }
+
+.error-decoration{
+  position:absolute; width:300px; height:300px;
+  border:2px solid var(--ignition); border-radius:50%;
+  opacity:0.1; top:-80px; right:-80px;
+  animation:spin 20s linear infinite;
+}
+
+.error-decoration.alt{
+  width:200px; height:200px; border-color:var(--volt);
+  bottom:-60px; left:-60px; animation:spinAlt 25s linear infinite;
+}
+
+@keyframes slideIn{
+  from{ opacity:0; transform:translateY(40px); }
+  to{ opacity:1; transform:translateY(0); }
+}
+
+@keyframes spin{
+  0%{ transform:rotate(0deg); }
+  100%{ transform:rotate(360deg); }
+}
+
+@keyframes spinAlt{
+  0%{ transform:rotate(360deg); }
+  100%{ transform:rotate(0deg); }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1024px){
+  .nav-links{ position:fixed; top:0; right:0; height:100vh; width:78%; background:var(--ink-2); flex-direction:column; justify-content:center; padding:40px; gap:28px; transform:translateX(100%); transition:transform .5s var(--ease); border-left:1px solid var(--line); z-index:1100; }
+  .nav-links.open{ transform:translateX(0); }
+  .nav-toggle{ display:block; }
+  .nav-close{ display:flex; }
+}
+
+@media (max-width: 760px){
+  .error-container{ padding:100px 20px 40px; }
+  .error-code{ margin-bottom:16px; }
+  .error-actions{ gap:12px; }
+  .error-actions .btn{ min-width:auto; padding:12px 20px; font-size:0.8rem; }
+  .error-detail{ gap:20px; }
+  .error-decoration{ display:none; }
+  .error-decoration.alt{ display:none; }
+}
+
+</style>
+<body>
+
+<!-- <header class="nav">
+  <a href="index.html" class="nav-logo"><img src="./assets/stackly-removebg-preview.png" alt="Stackly Motors" style="height: 60px; width: 120px;"></a>
+  <nav class="nav-links">
+    <button class="nav-close" aria-label="Close menu"><i class="fa-solid fa-times"></i></button>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="cars.html">Cars</a>
+    <a href="dealers.html">Dealers</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+  <div class="nav-cta">
+    <a href="login.html" class="btn btn-ghost btn-sm">Login</a>
+    <button class="nav-toggle"><span></span><span></span><span></span></button>
+  </div>
+</header> -->
+
+<section class="error-container">
+  <div class="error-bg"></div>
+  <div class="error-decoration"></div>
+  <div class="error-decoration alt"></div>
+  
+  <div class="error-content">
+    <div class="error-code">404</div>
+    <h1 class="error-title">Oops! Engine Stalled</h1>
+    
+    <p class="error-message">The page you're looking for has driven off the lot. It might have been sold, relocated, or the link got redirected to a faster route.</p>
+    
+    <div class="error-detail">
+      <div class="error-detail-item">
+        <div class="ic"><i class="fa-solid fa-road"></i></div>
+        <b>Wrong Exit</b>
+        <span>Page Not Found</span>
+      </div>
+      <div class="error-detail-item">
+        <div class="ic"><i class="fa-solid fa-map"></i></div>
+        <b>Lost Route</b>
+        <span>404 Error</span>
+      </div>
+      <div class="error-detail-item">
+        <div class="ic"><i class="fa-solid fa-compass"></i></div>
+        <b>Need Directions?</b>
+        <span>Head Home</span>
+      </div>
+    </div>
+    
+    <div class="error-actions">
+      <a href="index.html" class="btn btn-primary">
+        <i class="fa-solid fa-home"></i> Go Home
+      </a>
+      <button class="btn btn-ghost" onclick="history.back()">
+        <i class="fa-solid fa-arrow-left"></i> Go Back
+      </button>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  
+  /* Sticky nav background on scroll */
+  const nav = document.querySelector('.nav');
+  if (nav) {
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 80) {
+        nav.classList.add('is-scrolled');
+      } else {
+        nav.classList.remove('is-scrolled');
+      }
+    });
+  }
+
+  /* Mobile nav toggle and close button */
+  const navToggle = document.querySelector('.nav-toggle');
+  const navClose = document.querySelector('.nav-close');
+  const navLinks = document.querySelector('.nav-links');
+  
+  function closeNav() {
+    navLinks.classList.remove('open');
+    navToggle.classList.remove('open');
+  }
+  
+  if (navToggle && navLinks) {
+    navToggle.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+      navToggle.classList.toggle('open');
+    });
+  }
+  
+  if (navClose && navLinks) {
+    navClose.addEventListener('click', closeNav);
+  }
+  
+  // Close nav when clicking a link
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeNav);
+  });
+
+});
+</script>
+
+</body>
+</html>
